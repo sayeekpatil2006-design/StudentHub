@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — StudentHub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="index.html"><span class="logo">SH</span> StudentHub</a>
+    <button class="tab active" data-tab="overview">📊 Overview</button>
+    <button class="tab" data-tab="tasks">✅ Tasks</button>
+    <button class="tab" data-tab="timetable">🗓️ Timetable</button>
+    <button class="tab" data-tab="attendance">🎯 Attendance</button>
+    <button class="tab" data-tab="notes">📝 Notes</button>
+    <button class="tab" data-tab="focus">⏱️ Focus</button>
+  </aside>
+
+  <main class="content">
+    <!-- Overview -->
+    <section class="panel active" id="overview">
+      <h1>Overview</h1>
+      <div class="cards">
+        <div class="card"><h4>Tasks done</h4><div class="big" id="ov-tasks">0/0</div></div>
+        <div class="card"><h4>Attendance</h4><div class="big" id="ov-att">0%</div></div>
+        <div class="card"><h4>Focus sessions today</h4><div class="big" id="ov-focus">0</div></div>
+        <div class="card"><h4>Notes</h4><div class="big" id="ov-notes">0</div></div>
+      </div>
+      <div class="card"><h4>Upcoming tasks</h4><ul class="list" id="ov-upcoming" style="margin-top:12px"></ul></div>
+    </section>
+
+    <!-- Tasks -->
+    <section class="panel" id="tasks">
+      <h1>Tasks</h1>
+      <form class="inline" id="task-form">
+        <input id="task-title" placeholder="New task…" required />
+        <input id="task-due" type="date" />
+        <select id="task-pri"><option>High</option><option selected>Medium</option><option>Low</option></select>
+        <button class="btn" type="submit">Add</button>
+      </form>
+      <ul class="list" id="task-list"></ul>
+    </section>
+
+    <!-- Timetable -->
+    <section class="panel" id="timetable">
+      <h1>Timetable</h1>
+      <form class="inline" id="tt-form">
+        <select id="tt-day"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option></select>
+        <input id="tt-time" type="time" required />
+        <input id="tt-subject" placeholder="Subject" required />
+        <input id="tt-room" placeholder="Room" />
+        <button class="btn" type="submit">Add class</button>
+      </form>
+      <table class="tt"><thead><tr><th>Day</th><th>Time</th><th>Subject</th><th>Room</th><th></th></tr></thead><tbody id="tt-body"></tbody></table>
+    </section>
+
+    <!-- Attendance -->
+    <section class="panel" id="attendance">
+      <h1>Attendance</h1>
+      <form class="inline" id="att-form">
+        <input id="att-subject" placeholder="Subject" required />
+        <button class="btn" type="submit">Add subject</button>
+      </form>
+      <ul class="list" id="att-list"></ul>
+    </section>
+
+    <!-- Notes -->
+    <section class="panel" id="notes">
+      <h1>Notes</h1>
+      <form class="inline" id="note-form">
+        <textarea id="note-text" rows="2" placeholder="Write a note…" required style="flex:1;min-width:240px"></textarea>
+        <button class="btn" type="submit">Save note</button>
+      </form>
+      <div class="notes-grid" id="note-list"></div>
+    </section>
+
+    <!-- Focus -->
+    <section class="panel" id="focus">
+      <h1>Focus Timer</h1>
+      <div class="card timer">
+        <div class="time" id="timer-display">25:00</div>
+        <div class="actions">
+          <button class="btn" id="timer-start">Start</button>
+          <button class="btn ghost" id="timer-reset">Reset</button>
+          <select id="timer-len"><option value="25">25 min</option><option value="15">15 min</option><option value="5">5 min</option><option value="1">1 min (test)</option></select>
+        </div>
+        <p style="margin-top:16px;color:var(--muted)">Sessions completed today: <b id="timer-count">0</b></p>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
